@@ -3,11 +3,13 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import Pug from 'koa-pug';
+import middleware from 'koa-webpack';
 import _ from 'lodash';
 import path from 'path';
 // import rollbar from 'rollbar';
 
 import addRoutes from './controllers';
+import getWebpackConfig from '../webpack.config.babel';
 
 export default () => {
   // rollbar.init('8a0f822a03c149d68e794345b540b40b');
@@ -38,6 +40,9 @@ export default () => {
   });
 
   app
+    .use(middleware({
+      config: getWebpackConfig(),
+    }))
     .use(router.routes())
     .use(router.allowedMethods());
   pug.use(app);
