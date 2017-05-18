@@ -4,7 +4,8 @@ import webpack from 'webpack';
 
 export default () => ({
   entry: {
-    bootstrap: ['./client'],
+    app: ['./client'],
+    vendor: ['babel-polyfill', 'jquery', 'jquery-ujs'],
   },
   output: {
     path: path.join(__dirname, 'public', 'assets'),
@@ -17,11 +18,26 @@ export default () => ({
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   use: 'babel-loader',
-      // },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+    }),
+  ],
 });
