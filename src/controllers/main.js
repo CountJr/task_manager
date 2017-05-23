@@ -2,7 +2,7 @@
 
 export default (router) => {
   router
-    .get('root', '/', (ctx) => {
+    .get('index', '/', (ctx) => {
       ctx.render('main/index');
     })
     .get('/date', (ctx) => {

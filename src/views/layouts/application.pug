@@ -24,10 +24,14 @@ html
             a.nav-link item
           li.nav-item
             a.nav-link item
-        if isSignedIn()
-          a.navbar-brand.my-2.my-lg-0(href="#") #{userID}
-        else
-          a.navbar-brand.my-2.my-lg-0(href="#") not logged in
+        ul.navbar-nav
+          if isSignedIn()
+            li.nav-item
+              a.navbar-brand.my-2.my-lg-0(href="#") #{userID}
+            li.nav-item
+              a.navbar-brand.my-2.my-lg-0(href=urlFor('session') data-method='delete' rel='nofollow') log out
+          else
+            a.navbar-brand.my-2.my-lg-0(href="#") not logged in
 
     .container
       block contents

@@ -5,6 +5,8 @@ import Router from 'koa-router';
 import Pug from 'koa-pug';
 import middleware from 'koa-webpack';
 import session from 'koa-session';
+import bodyParser from 'koa-bodyparser';
+import methodOverride from 'koa-methodoverride';
 import _ from 'lodash';
 import path from 'path';
 // import rollbar from 'rollbar';
@@ -42,6 +44,12 @@ export default () => {
   app
     // TODO: keep session in sequelize: koa-generic-session-sequelize + koa-generic-session
     .use(session(CONFIG, app))
+    .use(bodyParser())
+    .use(methodOverride((req) => {
+      if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        return req.body._method;
+      }
+    }))
     .use(async (ctx, next) => {
       // ignore favicon
       if (ctx.path === '/favicon.ico') return;
@@ -50,6 +58,8 @@ export default () => {
         isSignedIn: () => Boolean(ctx.session.userID),
         userID: ctx.session.userID,
       }
+
+      // ctx.session.userID = 15;
 
       await next();
     })
