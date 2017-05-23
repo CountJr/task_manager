@@ -55,11 +55,11 @@ export default () => {
       if (ctx.path === '/favicon.ico') return;
 
       ctx.state = {
-        isSignedIn: () => Boolean(ctx.session.userID),
-        userID: ctx.session.userID,
+        isSignedIn: () => Boolean(ctx.session.userId),
+        userId: ctx.session.userId,
       }
 
-      // ctx.session.userID = 15;
+      // ctx.session.userId = 15;
 
       await next();
     })

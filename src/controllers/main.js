@@ -2,10 +2,10 @@
 
 export default (router) => {
   router
-    .get('index', '/', (ctx) => {
+    .get('main', '/', (ctx) => {
       ctx.render('main/index');
     })
-    .get('/date', (ctx) => {
-      ctx.body = new Date();
-    });
+    // .get('/date', (ctx) => {
+    //   ctx.body = new Date();
+    // });
 };

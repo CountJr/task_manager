@@ -26,12 +26,18 @@ html
             a.nav-link item
         ul.navbar-nav
           if isSignedIn()
+            li.nav-item.dropdown
+              a#userMenu.nav-link.dropdown-toggle(href="#", data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{userID}
+              .dropdown-menu(aria-labelledby='userMenu')
+                a.dropdown-item(href='#') Profile
+                a.dropdown-item(href='#') Settings
             li.nav-item
-              a.navbar-brand.my-2.my-lg-0(href="#") #{userID}
-            li.nav-item
-              a.navbar-brand.my-2.my-lg-0(href=urlFor('session') data-method='delete' rel='nofollow') log out
+              a.nav-link.my-2.my-lg-0(href=urlFor('session') data-method='delete' rel='nofollow') Log Out
           else
-            a.navbar-brand.my-2.my-lg-0(href="#") not logged in
+            li.nav-item
+              a.nav-link.my-2.my-lg-0(href="#") Register
+            li.nav-item
+              a.nav-link.my-2.my-lg-0(href="#") Log In
 
     .container
       block contents
