@@ -51,7 +51,6 @@ export default () => {
         userID: ctx.session.userID,
       }
 
-      // delete session: ctx.session = null;
       await next();
     })
     .use(middleware({
