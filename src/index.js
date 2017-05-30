@@ -13,6 +13,7 @@ import path from 'path';
 
 import addRoutes from './controllers';
 import getWebpackConfig from '../webpack.config.babel';
+import container from './container';
 
 export default () => {
   // rollbar.init('8a0f822a03c149d68e794345b540b40b');
@@ -24,7 +25,6 @@ export default () => {
   app.keys = ['jopa'];
   const CONFIG = { key: 'koases', signed: true };
 
-  const container = {};
   const router = new Router();
   addRoutes(router, container);
 

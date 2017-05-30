@@ -1,8 +1,27 @@
 // @flow
 
-export default (router) => {
+export default (router, { User }) => {
   router
-    .get('main', '/', (ctx) => {
+    .get('main', '/', async (ctx) => {
+
+      // seqielize test
+      // await User.sync({force: true}).then(() => {
+      //   // Table created
+      //   return User.create({
+      //     firstName: 'John',
+      //     lastName: 'Hancock'
+      //   });
+      // });
+      //
+      // console.log('-----');
+      //
+      // await User.findAll().then(users => {
+      //   console.log('lala');
+      //   console.log(users)
+      // });
+      // console.log('--/--');
+      ///////////
+
       ctx.render('main/index');
     })
     // .get('/date', (ctx) => {
