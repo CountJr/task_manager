@@ -5,7 +5,7 @@
 
 import Sequelize from 'sequelize';
 
-export default connect => connect.define('position', {
+export default (connect: Sequelize) => connect.define('position', {
   name: {
     type: Sequelize.STRING
   },

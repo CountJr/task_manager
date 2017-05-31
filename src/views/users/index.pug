@@ -5,12 +5,17 @@ block contents
   table.table.table-stripped
     thead
       tr
+        th Id
         th Full Name
         th Email
         th Created At
+        th profile
     tbody
       each user in users
         tr
-          td= user.lastname
+          td= user.id
+          td= user.fullName
           td= user.email
           td= user.createdAt
+          td
+            a(href='/user/' + user.id) profile

@@ -13,8 +13,6 @@ const addSomeData = async ({ User }) => {
     firstname: 'John',
     lastname: 'O\'Brian',
     password: '123456',
-    createdAt: new Date(),
-    modifiedAt: new Date(),
   });
   User.create({
     email: 'bar@example.com',
@@ -22,8 +20,6 @@ const addSomeData = async ({ User }) => {
     firstname: 'Brian',
     lastname: 'Doh',
     password: 'qwerty',
-    createdAt: new Date(),
-    modifiedAt: new Date(),
   });
 };
 

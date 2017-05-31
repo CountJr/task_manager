@@ -1,0 +1,18 @@
+extends /layouts/application.pug
+
+block contents
+  .container
+    p #{user.alias}
+      table.table.table-stripped
+        tr
+          td Id
+          td #{user.id}
+        tr
+          td First Name
+          td #{user.firstname}
+        tr
+          td last name
+          td #{user.lastname}
+        tr
+          td email
+          td #{user.email}

@@ -5,12 +5,10 @@
 
 import getUsers from './User';
 import getPosition from './Position';
+import type Sequelize from "sequelize";
 
 
-export default (connect) => {
-  const models = {
+export default (connect: Sequelize) => ({
     User: getUsers(connect),
     Position: getPosition(connect),
-  };
-  return models;
-};
+  });
