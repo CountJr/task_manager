@@ -8,10 +8,12 @@ export default connect => connect.define('user', {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
   alias: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
   name: {
     type: Sequelize.STRING,

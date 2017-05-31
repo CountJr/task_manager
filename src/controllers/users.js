@@ -1,8 +1,9 @@
 // @flow
 
-export default (router, { User, Task }) => {
+export default (router, { User }) => {
   router
     .get('users', '/users', async (ctx) => {
-      ctx.render('users');
+      const users = await User.findAll();
+      ctx.render('users', { users });
     })
 }

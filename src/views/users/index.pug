@@ -2,3 +2,15 @@ extends /layouts/application.pug
 
 block contents
   p user list
+  table.table.table-stripped
+    thead
+      tr
+        th Full Name
+        th Email
+        th Created At
+    tbody
+      each user in users
+        tr
+          td= user.name
+          td= user.email
+          td= user.createdAt

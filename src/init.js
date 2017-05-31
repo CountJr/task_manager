@@ -6,8 +6,30 @@
 import connect from './db';
 import getModels from './models';
 
+const addSomeData = async ({ User }) => {
+  User.create({
+    email: 'some@example.com',
+    alias: 'foo',
+    name: 'John',
+    surName: 'O\'Brian',
+    password: '123456',
+    createdAt: new Date(),
+    modifiedAt: new Date(),
+  });
+  User.create({
+    email: 'bar@example.com',
+    alias: 'bar',
+    name: 'Brian',
+    surName: 'Doh',
+    password: 'qwerty',
+    createdAt: new Date(),
+    modifiedAt: new Date(),
+  });
+};
+
 export default async () => {
   const models = getModels(connect);
   await Promise.all(Object.values(models).map(model => model.sync({ force: true })));
+  await addSomeData(models);
   //
 };
