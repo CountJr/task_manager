@@ -10,8 +10,8 @@ const addSomeData = async ({ User }) => {
   User.create({
     email: 'some@example.com',
     alias: 'foo',
-    name: 'John',
-    surName: 'O\'Brian',
+    firstname: 'John',
+    lastname: 'O\'Brian',
     password: '123456',
     createdAt: new Date(),
     modifiedAt: new Date(),
@@ -19,8 +19,8 @@ const addSomeData = async ({ User }) => {
   User.create({
     email: 'bar@example.com',
     alias: 'bar',
-    name: 'Brian',
-    surName: 'Doh',
+    firstname: 'Brian',
+    lastname: 'Doh',
     password: 'qwerty',
     createdAt: new Date(),
     modifiedAt: new Date(),

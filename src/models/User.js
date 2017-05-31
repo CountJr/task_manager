@@ -9,31 +9,48 @@ export default connect => connect.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      isEmail: true,
+    }
   },
   alias: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      isAlphanumeric: true,
+    }
   },
-  name: {
+  firstname: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      is: /^[a-z'\- ]+$/i,
+    }
   },
-  surName: {
+  lastname: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      is: /^[a-z'\- ]+$/i,
+    }
   },
   password: {
     // TODO: important!! make hash one!!!
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      len: [6, +Infinity],
+    }
   },
   createdAt: {
     type: Sequelize.DATE,
     allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
   modifiedAt: {
     type: Sequelize.DATE,
     allowNull: false,
+    defaultValue: Sequelize.NOW,
   },
 });

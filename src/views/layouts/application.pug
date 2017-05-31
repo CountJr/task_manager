@@ -1,3 +1,5 @@
+include /mixins/forms.pug
+
 doctype html
 
 html
@@ -35,7 +37,7 @@ html
               a.nav-link.my-2.my-lg-0(href=urlFor('session') data-method='delete' rel='nofollow') Log Out
           else
             li.nav-item
-              a.nav-link.my-2.my-lg-0(href="#") Register
+              a.nav-link.my-2.my-lg-0(href="/users/new") Register
             li.nav-item
               a.nav-link.my-2.my-lg-0(href="#") Log In
 
