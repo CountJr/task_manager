@@ -4,15 +4,18 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import Pug from 'koa-pug';
 import middleware from 'koa-webpack';
-import session from 'koa-session';
+import session from 'koa-generic-session';
 import bodyParser from 'koa-bodyparser';
 import methodOverride from 'koa-methodoverride';
+import SequelizeStore from 'koa-generic-session-sequelize';
+import convert from 'koa-convert';
 import _ from 'lodash';
 import path from 'path';
 // import rollbar from 'rollbar';
 
 import addRoutes from './controllers';
 import getWebpackConfig from '../webpack.config.babel';
+import connect from './db';
 import container from './container';
 
 export default () => {
@@ -42,8 +45,12 @@ export default () => {
   });
 
   app
-    // TODO: keep session in sequelize: koa-generic-session-sequelize + koa-generic-session
-    .use(session(CONFIG, app))
+    .use(convert(session({
+      store: new SequelizeStore(
+        connect,
+        {}
+      )
+    })))
     .use(bodyParser())
     .use(methodOverride((req) => {
       if (req.body && typeof req.body === 'object' && '_method' in req.body) {

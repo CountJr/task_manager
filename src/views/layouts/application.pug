@@ -38,9 +38,9 @@ html
               a.nav-link.my-2.my-lg-0(href=urlFor('session') data-method='delete' rel='nofollow') Log Out
           else
             li.nav-item
-              a.nav-link.my-2.my-lg-0(href="/users/new") Register
+              a.nav-link.my-2.my-lg-0(href=urlFor('addUser')) Register
             li.nav-item
-              a.nav-link.my-2.my-lg-0(href="#") Log In
+              a.nav-link.my-2.my-lg-0(href=urlFor('newSession')) Log In
 
     .container
       block contents

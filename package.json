@@ -23,10 +23,12 @@
     "jquery-ujs": "^1.2.2",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-generic-session": "^1.11.5",
+    "koa-generic-session-sequelize": "^1.0.9",
     "koa-methodoverride": "^2.0.0",
     "koa-pug": "^3.0.0-2",
     "koa-router": "^7.2.0",
-    "koa-session": "^5.0.0",
     "koa-webpack": "^0.5.1",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
@@ -44,10 +46,12 @@
     "babel-eslint": "7.1.1",
     "eslint": "3.17.1",
     "eslint-config-airbnb-base": "11.1.1",
+    "eslint-plugin-flowtype": "^2.29.2",
     "eslint-plugin-import": "2.2.0",
     "flow-bin": "^0.47.0"
   },
   "scripts": {
+    "eslint": "eslint",
     "flow": "flow",
     "gulp": "gulp",
     "webpack": "webpack"

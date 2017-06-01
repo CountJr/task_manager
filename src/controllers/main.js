@@ -1,6 +1,7 @@
 // @flow
+import type Router from 'koa-router';
 
-export default (router, { User }) => {
+export default (router: Router) => {
   router
     .get('main', '/', async (ctx) => {
 

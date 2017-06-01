@@ -10,7 +10,6 @@ export default (router: Router, { User }: Object) => {
       ctx.render('users', { users });
     })
     .get('profile', '/user/:id', async (ctx) => {
-      // TODO: profile
       const user = await User.findById(ctx.params.id);
       ctx.render('users/profile', { user });
     })

@@ -3,3 +3,6 @@ start:
 
 init:
 	npm run gulp init
+
+lint:
+	npm run eslint -- src __tests__
