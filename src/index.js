@@ -11,7 +11,7 @@ import SequelizeStore from 'koa-generic-session-sequelize';
 import convert from 'koa-convert';
 import _ from 'lodash';
 import path from 'path';
-// import rollbar from 'rollbar';
+import rollbar from 'rollbar';
 
 import addRoutes from './controllers';
 import getWebpackConfig from '../webpack.config.babel';
@@ -19,7 +19,7 @@ import connect from './db';
 import container from './container';
 
 export default () => {
-  // rollbar.init('8a0f822a03c149d68e794345b540b40b');
+  rollbar.init('8a0f822a03c149d68e794345b540b40b');
 
   // rollbar.reportMessage("Hello world!");
 
@@ -64,7 +64,8 @@ export default () => {
       ctx.state = {
         isSignedIn: () => Boolean(ctx.session.userId),
         userId: ctx.session.userId,
-      }
+        userAlias: ctx.session.userAlias,
+      };
 
       // ctx.session.userId = 15;
 

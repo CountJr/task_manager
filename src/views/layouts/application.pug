@@ -30,10 +30,10 @@ html
         ul.navbar-nav
           if isSignedIn()
             li.nav-item.dropdown
-              a#userMenu.nav-link.dropdown-toggle(href="#", data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{userID}
+              a#userMenu.nav-link.dropdown-toggle(href="#", data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{userAlias}
               .dropdown-menu(aria-labelledby='userMenu')
-                a.dropdown-item(href='#') Profile
-                a.dropdown-item(href='#') Settings
+                a.dropdown-item(href=`/user/${userId}`) Profile
+                a.dropdown-item(href=urlFor('settings')) Settings
             li.nav-item
               a.nav-link.my-2.my-lg-0(href=urlFor('session') data-method='delete' rel='nofollow') Log Out
           else

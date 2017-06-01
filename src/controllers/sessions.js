@@ -18,6 +18,7 @@ export default (router: Router, { User }: Object) => {
       });
       if (user && user.password === password) {
         ctx.session.userId = user.id;
+        ctx.session.userAlias = user.alias;
         ctx.redirect(router.url('main'));
         return;
       }
