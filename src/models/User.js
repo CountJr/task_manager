@@ -25,6 +25,10 @@ export default (connect: Sequelize) => connect.define('users', {
       allowNull: false,
       unique: true,
       validate: {
+        notEmpty: {
+          args: true,
+          msg: "Alias can't be empty"
+        },
         isAlphanumeric: {
           args: true,
           msg: "Must contain only letters and numbers",
@@ -35,22 +39,39 @@ export default (connect: Sequelize) => connect.define('users', {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        is: /^[a-z'\- ]+$/i,
-      }
+        is: {
+          notEmpty: {
+            args: true,
+            msg: "Name can't be empty"
+          },
+          args:/^[a-z'\- ]+$/i,
+          msg: "Must contain only letters, ', - and space",
+        },
+      },
     },
     lastname: {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        is: /^[a-z'\- ]+$/i,
-      }
+        is: {
+          notEmpty: {
+            args: true,
+            msg: "Name can't be empty"
+          },
+          args:/^[a-z'\- ]+$/i,
+          msg: "Must contain only letters, ', - and space",
+        },
+      },
     },
     password: {
       // TODO: important!! make hash one!!!
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        len: [6, +Infinity],
+        len: {
+          args:[6, +Infinity],
+          msg: "Password must have at least 6 symbols",
+        },
       }
     }
   }, {
