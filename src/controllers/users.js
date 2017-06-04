@@ -47,7 +47,7 @@ export default (router: Router, { User }: Object) => {
       const user = await User.findById(ctx.state.userId);
       try {
         await user.update(form);
-        ctx.redirect(`/users/${ctx.state.userId}`);
+        ctx.redirect(router.url('usersShow', ctx.state.userId));
       } catch (e) {
         user.password_confirmation = '';
         ctx.render('users/edit', { f: buildFormObj(user, e) });
@@ -61,7 +61,7 @@ export default (router: Router, { User }: Object) => {
       ctx.redirect(router.url('main'));
     })
 
-    // TODO: maybe. user not find page for unexisting user
+    // TODO: maybe. 'user not found' page for unexisting user
     .get('usersShow', '/users/:id', async (ctx) => {
       const user = await User.findById(ctx.params.id);
       if (user) {

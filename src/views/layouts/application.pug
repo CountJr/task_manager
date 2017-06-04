@@ -32,7 +32,7 @@ html
             li.nav-item.dropdown
               a#userMenu.nav-link.dropdown-toggle(href="#", data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{userAlias}
               .dropdown-menu(aria-labelledby='userMenu')
-                a.dropdown-item(href=`/users/${userId}`) Profile
+                a.dropdown-item(href=urlFor('usersShow', userId)) Profile
                 a.dropdown-item(href=urlFor('usersEdit')) Settings
             li.nav-item
               a.nav-link.my-2.my-lg-0(href=urlFor('session') data-method='delete' rel='nofollow') Log Out
