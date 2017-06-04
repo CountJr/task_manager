@@ -54,15 +54,20 @@ export default (router: Router, { User }: Object) => {
       }
     })
 
-    // TODO: test destroy functionality
     .delete('usersDestroy', '/users', async (ctx) => {
       const user = await User.findById(ctx.state.userId);
       await user.destroy();
-      ctx.render(router.url('main'));
+      ctx.session = null;
+      ctx.redirect(router.url('main'));
     })
 
+    // TODO: maybe. user not find page for unexisting user
     .get('usersShow', '/users/:id', async (ctx) => {
       const user = await User.findById(ctx.params.id);
-      ctx.render('users/profile', { user });
+      if (user) {
+        ctx.render('users/profile', { user });
+      } else {
+        ctx.redirect(router.url('usersIndex'));
+      }
     })
 };

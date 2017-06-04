@@ -1,11 +1,15 @@
 extends /layouts/application.pug
 
 block contents
+  p Edit user  - #{f.object['alias']}
   +formFor(f, { url: urlFor('usersUpdate'), method: 'post' })
     +input(f, 'email')
-    +input(f, 'alias')
     +input(f, 'firstname')
     +input(f, 'lastname')
     +input(f, 'password_confirmation', { as: 'password' })
     input(type='hidden' name='_method' value='PATCH')
     +button(f)
+  p Delete user  - #{f.object['alias']}
+  +formFor(f, {url: urlFor('usersDestroy'), method: 'post'})
+    input(type='hidden' name='_method' value='DELETE')
+    button(class='btn btn-danger') Delete
