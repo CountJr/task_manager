@@ -69,5 +69,5 @@ export default (router: Router, { User }: Object) => {
       } else {
         ctx.redirect(router.url('usersIndex'));
       }
-    })
+    });
 };

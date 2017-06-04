@@ -25,8 +25,8 @@ const addSomeData = async ({ User }) => {
 
 export default async () => {
   const models = getModels(connect);
-  await Promise.all(Object.values(models).map((model: Object)=>
-    model.sync({force: true})
+  await Promise.all(Object.values(models).map((model: Object) =>
+    model.sync({ force: true }),
   ));
   await addSomeData(models);
   //

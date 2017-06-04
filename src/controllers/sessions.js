@@ -30,4 +30,4 @@ export default (router: Router, { User }: Object) => {
       ctx.session = null;
       ctx.redirect(router.url('main'));
     });
-}
+};

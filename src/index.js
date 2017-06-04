@@ -26,7 +26,7 @@ export default () => {
   const app = new Koa();
 
   app.keys = ['jopa'];
-  const CONFIG = { key: 'koases', signed: true };
+  // const CONFIG = { key: 'koases', signed: true };
 
   const router = new Router();
   addRoutes(router, container);
@@ -48,14 +48,17 @@ export default () => {
     .use(convert(session({
       store: new SequelizeStore(
         connect,
-        {}
-      )
+        {},
+      ),
     })))
     .use(bodyParser())
+
+    /* eslint no-underscore-dangle: ["error", { "allow": ["_method"] }] */
     .use(methodOverride((req) => {
       if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         return req.body._method;
       }
+      return req.method;
     }))
     .use(async (ctx, next) => {
       // ignore favicon

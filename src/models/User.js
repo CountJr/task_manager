@@ -12,13 +12,13 @@ export default (connect: Sequelize) => connect.define('users', {
     validate: {
       notEmpty: {
         args: true,
-        msg: "Email can't be empty",
+        msg: 'Email can\'t be empty',
       },
       isEmail: {
         args: true,
-        msg: "Must be a valid email like 'user@example.com'",
+        msg: 'Must be a valid email like \'user@example.com\'',
       },
-    }
+    },
   },
   alias: {
     type: Sequelize.STRING,
@@ -27,13 +27,13 @@ export default (connect: Sequelize) => connect.define('users', {
     validate: {
       notEmpty: {
         args: true,
-        msg: "Alias can't be empty",
+        msg: 'Alias can\'t be empty',
       },
       isAlphanumeric: {
         args: true,
-        msg: "Must contain only letters and numbers",
+        msg: 'Must contain only letters and numbers',
       },
-    }
+    },
   },
   firstname: {
     type: Sequelize.STRING,
@@ -42,10 +42,10 @@ export default (connect: Sequelize) => connect.define('users', {
       is: {
         notEmpty: {
           args: true,
-          msg: "Name can't be empty",
+          msg: 'Name can\'t be empty',
         },
-        args:/^[a-z'\- ]+$/i,
-        msg: "Must contain only letters, ', - and space",
+        args: /^[a-z'\- ]+$/i,
+        msg: 'Must contain only letters, \', - and space',
       },
     },
   },
@@ -56,10 +56,10 @@ export default (connect: Sequelize) => connect.define('users', {
       is: {
         notEmpty: {
           args: true,
-          msg: "Name can't be empty",
+          msg: 'Name can\'t be empty',
         },
-        args:/^[a-z'\- ]+$/i,
-        msg: "Must contain only letters, ', - and space",
+        args: /^[a-z'\- ]+$/i,
+        msg: 'Must contain only letters, \', - and space',
       },
     },
   },
@@ -69,15 +69,15 @@ export default (connect: Sequelize) => connect.define('users', {
     allowNull: false,
     validate: {
       len: {
-        args:[6, +Infinity],
-        msg: "Password must have at least 6 symbols",
+        args: [6, +Infinity],
+        msg: 'Password must have at least 6 symbols',
       },
-    }
+    },
   },
   password_confirmation: {
     type: Sequelize.VIRTUAL,
     validate: {
-      passwordConf () {
+      passwordConf() {
         if (this.password_confirmation !== this.password) {
           throw new Error('Password confirmation doesn\'t match Password');
         }
@@ -86,9 +86,9 @@ export default (connect: Sequelize) => connect.define('users', {
   },
 }, {
   getterMethods: {
-    fullName: function () {
+    fullName() {
       return `${this.firstname} '${this.alias}' ${this.lastname}`;
-    }
+    },
   },
   paranoid: true,
   freezeTableName: true,

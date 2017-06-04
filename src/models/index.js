@@ -3,12 +3,12 @@
  */
 // @flow
 
-import type Sequelize from "sequelize";
+import type Sequelize from 'sequelize';
 import getUsers from './User';
 // import getPosition from './Position';
 
 
 export default (connect: Sequelize) => ({
-    User: getUsers(connect),
+  User: getUsers(connect),
     // Position: getPosition(connect),
-  });
+});
