@@ -1,6 +1,6 @@
 // @flow
-import buildFormObj from '../lib/formObjectBuilder';
 import type Router from 'koa-router';
+import buildFormObj from '../lib/formObjectBuilder';
 
 export default (router: Router, { User }: Object) => {
   /*
@@ -17,10 +17,12 @@ export default (router: Router, { User }: Object) => {
       const users = await User.findAll();
       ctx.render('users', { users });
     })
+
     .get('usersNew', '/users/new', async (ctx) => {
       const user = User.build();
       ctx.render('users/new', { f: buildFormObj(user) });
     })
+
     // TODO: important! encrypt password
     .post('usersCreate', '/users', async (ctx) => {
       const form = ctx.request.body.form;
@@ -30,33 +32,35 @@ export default (router: Router, { User }: Object) => {
         // ctx.flash.set('User has been created');
         ctx.redirect(router.url('usersShow', user.id));
       } catch (e) {
+        user.password = '';
         ctx.render('users/new', { f: buildFormObj(user, e) });
       }
     })
+
     .get('usersEdit', '/users/edit', async (ctx) => {
       const user = await User.findById(ctx.state.userId);
       ctx.render('users/edit', { f: buildFormObj(user) });
     })
+
     .patch('usersUpdate', '/users', async (ctx) => {
       const form = ctx.request.body.form;
       const user = await User.findById(ctx.state.userId);
-      console.log(user.password, form);
       try {
-        if (user.password === form.oldPassword){
-          await user.update(form);
-          ctx.redirect(`/users/${ctx.state.userId}`);
-        } else {
-          // FIXME: build new object with 'password error' addition
-          throw new Error('wrong password');
-        }
+        await user.update(form);
+        ctx.redirect(`/users/${ctx.state.userId}`);
       } catch (e) {
-        ctx.render('users/settings', { f: buildFormObj(user, e) });
+        user.password_confirmation = '';
+        ctx.render('users/edit', { f: buildFormObj(user, e) });
       }
     })
+
+    // TODO: test destroy functionality
     .delete('usersDestroy', '/users', async (ctx) => {
-      // TODO: delete user
+      const user = await User.findById(ctx.state.userId);
+      await user.destroy();
       ctx.render(router.url('main'));
     })
+
     .get('usersShow', '/users/:id', async (ctx) => {
       const user = await User.findById(ctx.params.id);
       ctx.render('users/profile', { user });

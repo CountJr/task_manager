@@ -1,10 +1,11 @@
 extends /layouts/application.pug
 
 block contents
-  +formFor(f, { url: urlFor('settings'), method: 'post' })
+  +formFor(f, { url: urlFor('usersUpdate'), method: 'post' })
     +input(f, 'email')
     +input(f, 'alias')
     +input(f, 'firstname')
     +input(f, 'lastname')
-    +input(f, 'oldPassword', { as: 'password' })
+    +input(f, 'password_confirmation', { as: 'password' })
+    input(type='hidden' name='_method' value='PATCH')
     +button(f)

@@ -1,6 +1,6 @@
 // @flow
-import buildFormObj from '../lib/formObjectBuilder';
 import type Router from 'koa-router';
+import buildFormObj from '../lib/formObjectBuilder';
 
 export default (router: Router, { User }: Object) => {
   router
@@ -29,5 +29,5 @@ export default (router: Router, { User }: Object) => {
     .delete('session', '/session', (ctx) => {
       ctx.session = null;
       ctx.redirect(router.url('main'));
-    })
+    });
 }

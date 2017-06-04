@@ -5,7 +5,7 @@
 
 import _ from 'lodash';
 
-export default (object, error = { errors: [] }) => ({
+export default (object: Object, error: Object = { errors: [] }) => ({
   name: 'form',
   object,
   errors: _.groupBy(error.errors, 'path'),
